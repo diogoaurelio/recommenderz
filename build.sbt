@@ -29,6 +29,8 @@ libraryDependencies ++= Seq(
   "com.mohiva" %% "play-silhouette-password-bcrypt" % "4.0.0-RC1",
   "com.amazonaws" % "aws-java-sdk" % "1.10.20",
   "com.sksamuel.elastic4s" %% "elastic4s" % "1.4.14",
+  "com.typesafe.play" %% "play-slick" % "2.0.0",
+  "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
 
   //"com.typesafe.akka" %% "akka-actor"              % akkaVersion, // Akka Actor
   //"com.typesafe.akka" %% "akka-slf4j"              % akkaVersion, // Akka SLF4J
