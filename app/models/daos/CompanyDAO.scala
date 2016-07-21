@@ -8,6 +8,10 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.db.NamedDatabase
 import slick.driver.JdbcProfile
 
+import com.github.tototoshi.slick.PostgresJodaSupport._
+//import slick.driver.PostgresDriver.api._
+import org.joda.time.DateTime
+
 import scala.concurrent.Future
 
 /**
