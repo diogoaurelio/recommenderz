@@ -24,7 +24,7 @@ class CompanyDAO @Inject()(@NamedDatabase("mydb") protected val dbConfigProvider
   def findById(id: Long): Future[Company] = db.run(Companies.filter(_.id === id ).result.head)
 
   def insert(company: Company): Future[Long] = {
-    //db.run(Companies += company).map { _ => () } // note: this returns Unit/None
+    //db.run(Companies += company).map { _ => () } // note this returns Unit/None
     //http://stackoverflow.com/questions/21894377/returning-autoinc-id-after-insert-in-slick-2-0
     db.run( (Companies returning Companies.map(_.id) ) += company )
   }

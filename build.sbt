@@ -20,6 +20,7 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap" % "3.3.5",
   "joda-time" % "joda-time" % "2.7",
   "org.joda" % "joda-convert" % "1.7",
+  "com.github.tototoshi" %% "slick-joda-mapper" % "2.0.0",
   "org.webjars" %% "webjars-play" % "2.4.0",
   //"com.adrianhurt" %% "play-bootstrap3" % "0.4.4-P24",
   "org.webjars" % "bootstrap" % "3.1.1",

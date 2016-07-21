@@ -14,6 +14,10 @@ import scala.concurrent.ExecutionContext
 class ApplicationController @Inject()(configuration: Configuration)(implicit ec: ExecutionContext) extends Controller {
 
 
+  def index() = Action (
+    Ok(views.html.index("Hello, we're rocking..."))
+  )
+
   def api() = Action {
     val apiMap = Map(
       "apiKey"-> configuration.getString("jobdb.apiKey").getOrElse(""),
