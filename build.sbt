@@ -11,7 +11,7 @@ val sparkVersion = "1.6.2"
 val webJars = "2.1.4"
 
 libraryDependencies ++= Seq(
-  jdbc,
+  //jdbc, // commented because play evolutions was conflicting -> http://stackoverflow.com/questions/33004303/a-binding-to-play-api-db-dbapi-was-already-configured-evolutions-and-injector-e
   cache,
   ws,
   specs2 % Test,
@@ -30,6 +30,7 @@ libraryDependencies ++= Seq(
   "com.mohiva" %% "play-silhouette-password-bcrypt" % "4.0.0-RC1",
   "com.amazonaws" % "aws-java-sdk" % "1.10.20",
   "com.sksamuel.elastic4s" %% "elastic4s" % "1.4.14",
+  "org.postgresql" % "postgresql" % "9.4-1200-jdbc41",
   "com.typesafe.play" %% "play-slick" % "2.0.0",
   "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
 
