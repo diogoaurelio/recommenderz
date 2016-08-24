@@ -4,7 +4,7 @@ CREATE TABLE "user" (
   "id" VARCHAR(255) NOT NULL,
   "name" VARCHAR(255),
   "email" VARCHAR(255) NOT NULL,
-  "skilss" VARCHAR(255)
+  "skills" VARCHAR(255)
 --  "telephone" VARCHAR(255),
 --  "ext" VARCHAR(255),
 --  "mobile" VARCHAR(255),

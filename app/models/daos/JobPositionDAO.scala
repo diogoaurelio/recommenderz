@@ -17,8 +17,10 @@ import scala.concurrent.Future
 /**
   * Created by diogo on 19.07.16.
   * Doubts about DAOs? Check the most basic example ever: https://github.com/playframework/play-slick/blob/master/samples/basic/app/dao/DogDAO.scala
+  * @NamedDatabase("slick")
   */
-class JobPositionDAO @Inject()(@NamedDatabase("slick") protected val dbConfigProvider: DatabaseConfigProvider) extends HasDatabaseConfigProvider[JdbcProfile] {
+
+class JobPositionDAO @Inject()(protected val dbConfigProvider: DatabaseConfigProvider) extends HasDatabaseConfigProvider[JdbcProfile] {
   import driver.api._
 
   private val JobPositions = TableQuery[JobPositionsTable]
