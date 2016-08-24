@@ -14,7 +14,7 @@ val webJars = "2.1.4"
 libraryDependencies ++= Seq(
   //jdbc, // commented because play evolutions was conflicting -> http://stackoverflow.com/questions/33004303/a-binding-to-play-api-db-dbapi-was-already-configured-evolutions-and-injector-e
   cache,
-  evolutions,
+  //evolutions,
   filters,
   ws,
   specs2 % Test,
@@ -27,7 +27,6 @@ libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.5.0",
   "org.webjars" % "jquery" % webJars,
   "org.webjars" % "bootstrap" % "3.3.5",
-
 
   "joda-time" % "joda-time" % "2.7",
   "org.joda" % "joda-convert" % "1.7",
@@ -48,10 +47,10 @@ libraryDependencies ++=Seq(
 
 // DBs
 libraryDependencies ++= Seq(
-  "com.h2database" % "h2" % "1.4.188",
-  "org.postgresql" % "postgresql" % "9.4.1208",
-
+  //"com.h2database" % "h2" % "1.4.188",
   //"org.postgresql" % "postgresql" % "9.4-1200-jdbc41",
+  //"org.postgresql" % "postgresql" % "9.3-1100-jdbc41",
+  "org.postgresql" % "postgresql" % "9.4.1208",
   "com.typesafe.play" %% "play-slick" % "2.0.0",
   "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
   "com.sksamuel.elastic4s" %% "elastic4s" % "1.4.14"
