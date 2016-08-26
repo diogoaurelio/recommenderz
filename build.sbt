@@ -53,7 +53,8 @@ libraryDependencies ++= Seq(
   "org.postgresql" % "postgresql" % "9.4.1208",
   "com.typesafe.play" %% "play-slick" % "2.0.0",
   "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
-  "com.sksamuel.elastic4s" %% "elastic4s" % "1.4.14"
+  "com.evojam" %% "play-elastic4s" % "0.3.1"
+  //"com.sksamuel.elastic4s" %% "elastic4s" % "1.4.14"
 )
 // Auth - TODO
 /*

@@ -1,6 +1,6 @@
 package utils
 import configuration.AppConfig
-import com.sksamuel.elastic4s.ElasticClient
+import com.sksamuel.elastic4s.{RichSearchResponse, ElasticClient}
 import com.sksamuel.elastic4s.ElasticDsl._
 import scala.concurrent.Future
 import org.elasticsearch.action.search.SearchResponse
@@ -17,7 +17,7 @@ object ESClient {
     * @param q
     * @return
     */
-  def searchItem(q: String): Future[SearchResponse] = {
+  def searchItem(q: String): Future[RichSearchResponse] = {
     val client = ElasticClient.remote(ESConfig.server, ESConfig.port)
     val productsIndex = ESConfig.productsIndex
     val rs = client.execute { search in productsIndex / "items" query q }

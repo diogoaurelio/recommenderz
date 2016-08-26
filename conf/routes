@@ -9,6 +9,14 @@
 GET     /                           controllers.ApplicationController.index
 GET     /api                        controllers.ApplicationController.api
 
+# Testing ElasticSearch
+GET     /es/stats        @controllers.ElasticController.getStats()
+POST    /es/index        @controllers.ElasticController.createIndex()
+GET     /jobs/:id       @controllers.JobPositionController.get(id: String)
+POST    /jobs/populate  @controllers.JobPositionController.populate()
+GET     /jobs           @controllers.JobPositionController.search(q: String)
+
+
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
