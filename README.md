@@ -16,6 +16,7 @@ Getting Started with Play Framework
 When this project was kickstarted, the latest stable version of Play Framework was 2.5
 - [Guidelines to setup scala in your machine]()
 - [Guidelines for setting up your machine for Play](https://www.playframework.com/documentation/2.5.x/Installing)
+- [Anatomy of a Play application](https://www.playframework.com/documentation/2.5.x/Anatomy)
 
 Getting Started with this project
 =================================
