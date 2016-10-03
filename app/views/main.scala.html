@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+@(title: String, stylesheets: Html = Html(""), scripts: Html = Html(""))(content: Html)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +18,10 @@
         <title>@title </title>
         <link href="https://fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,600" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))">
-        <!-- <link rel="stylesheet" href="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-theme.min.css"))"> -->
+
+        <link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/tbootstrap/bootstrap.min.css")'>
         <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
+
         <!--[if lt IE 9]>
         <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">
         </script>
@@ -68,6 +69,29 @@
         @* And here's where we render the `Html` object containing
          * the page content. *@
         @content
+
+        <!-- Le footer -->
+        <footer class="footer">
+            <div class="container foot">
+
+                <small>
+                    <p> &copy; jobDating, @(new java.util.Date().format("yyyy")) </p>
+                </small>
+            </div>
+
+        </footer>
+
+        <!-- Le Scripting - Bootstrap + JQuery + AngularJS + App core JavaScript -->
+        <!-- Placed at the end of the document so the pages load faster -->
+
+        <script src="@routes.Assets.versioned("javascripts/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/tbootstrap/bootstrap.min.js")" type="text/javascript"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="@routes.Assets.versioned("javascripts/ie10Hack.js")" type="text/javascript"></script>
+        <!-- App specifics -->
+        <script src="@routes.Assets.versioned("javascripts/main.js")" type="text/javascript"></script>
+
+        @scripts
 
 
     </body>

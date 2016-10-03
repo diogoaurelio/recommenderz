@@ -2,7 +2,7 @@
 
 @stylesheets = {
 <!-- Graça: podes pôr aqui CSS + javascript relacionado c esta view em específico -->
-<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+<link rel="stylesheet" media="screen" href='@routes.Assets.versioned("stylesheets/tbootstrap/small-business.css")'>
 }
 
 @scripts = {
@@ -11,9 +11,9 @@
 
 
 
-@main("Company Page") {
+@main("Company Page", stylesheets, scripts) {
 
-    <!-- Graça: tudo dentro do @main é um copy-paste de um template de Twitter Bootstrap! -->
+    <!-- Graça: tudo aqui dentro do @main é um copy-paste de um template de Twitter Bootstrap! -->
 
     <!-- Page Content -->
     <div class="container">
@@ -81,6 +81,6 @@
     </div>
     <!-- /.container -->
 
-    
+
 
 }
