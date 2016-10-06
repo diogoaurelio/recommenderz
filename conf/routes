@@ -9,6 +9,10 @@
 GET     /                           controllers.ApplicationController.index
 GET     /api                        controllers.ApplicationController.api
 
+# Company controller
+GET     /company                          controllers.CompanyController.getCompany
+
+
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
@@ -16,3 +20,6 @@ GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+#GET     /myfiles/*file              controllers.ExternalAssets.at(path="tmp", file)
+#GET     /webjars/*file              controllers.WebJarAssets.at(file)
