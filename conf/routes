@@ -3,23 +3,51 @@
 # ~~~~
 
 
-
+###################### Customer Facing ######################
 
 # An example controller showing a sample home page
 GET     /                           controllers.ApplicationController.index
-GET     /api                        controllers.ApplicationController.api
+# companies
+GET     /companies                  controllers.CompanyController.index
+
 
 # Company controller
-GET     /company                          controllers.CompanyController.getCompany
+GET     /companies/:id              controllers.CompanyController.show(id: Long)
 
 
-# An example controller showing how to use dependency injection
-GET     /count                      controllers.CountController.count
-# An example controller showing how to write asynchronous code
-GET     /message                    controllers.AsyncController.message
 
+###################### JobDating internal backend ######################
+
+# companies
+GET     /backend/companies/:id              controllers.backend.CompanyController.show(id: Long)
+GET     /backend/addCompany                 controllers.backend.CompanyController.add
+GET     /backend/companies/:id/edit         controllers.backend.CompanyController.edit(id: Long)
+
+
+###################### API ######################
+# Companies
+GET     /api/companies/             controllers.api.v1.CompanyController.index
+GET     /api/companies/:id          controllers.api.v1.CompanyController.show(id: Long)
+
+############ API backend
+# Companies
+GET     /backend/companies/:id              controllers.api.v1.backend.CompanyController.show(id: Long)
+POST    /backend/createCompany              controllers.api.v1.backend.CompanyController.create
+POST    /backend/companies/:id/update       controllers.api.v1.backend.CompanyController.update(id: Long)
+POST    /backend/companies/:id/delete       controllers.api.v1.backend.CompanyController.delete(id: Long)
+
+
+###################### Assets management ######################
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
 #GET     /myfiles/*file              controllers.ExternalAssets.at(path="tmp", file)
 #GET     /webjars/*file              controllers.WebJarAssets.at(file)
+
+
+###################### Examples (to delete in the future) ######################
+
+# An example controller showing how to use dependency injection
+GET     /count                      controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET     /message                    controllers.AsyncController.message
