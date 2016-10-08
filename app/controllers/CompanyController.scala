@@ -18,7 +18,9 @@ class CompanyController @Inject()(configuration: Configuration)
 
   val logger = Logger(this.getClass())
 
-  def index = TODO
+  def index: Action[AnyContent] = Action.async { implicit request =>
+    Future.successful(Ok(views.html.companies.index()))
+  }
 
   def show(id: Long): Action[AnyContent] = Action.async { implicit request =>
     logger.info("Entered Company view")
