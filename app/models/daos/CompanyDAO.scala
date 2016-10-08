@@ -26,19 +26,20 @@ class CompanyDAO @Inject()( protected val dbConfigProvider: DatabaseConfigProvid
 
   def all(): Future[Seq[Company]] = db.run(Companies.result)
 
-  def findById(id: Long): Future[Company] = db.run(Companies.filter(_.id === id ).result.head)
+  def findById(id: String): Future[Company] = db.run(Companies.filter(_.id === id ).result.head)
 
-  def insert(company: Company): Future[Long] = {
+  def insert(company: Company): Future[String] = {
     //db.run(Companies += company).map { _ => () } // note this returns Unit/None
     //http://stackoverflow.com/questions/21894377/returning-autoinc-id-after-insert-in-slick-2-0
     db.run( (Companies returning Companies.map(_.id) ) += company )
   }
 
   private class CompaniesTable(tag: Tag) extends Table[Company](tag, "company") {
-    def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
+    // TODO: change back to long
+    def id = column[String]("id", O.PrimaryKey, O.AutoInc)
     def name = column[String]("name")
-    def description = column[Option[String]]("description")
-    def logo = column[Option[String]]("logo")
+    def description = column[String]("description")
+    def logo = column[String]("logo")
 
     def * = (id, name, description, logo) <> (Company.tupled, Company.unapply _)
   }

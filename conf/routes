@@ -12,29 +12,29 @@ GET     /companies                  controllers.CompanyController.index
 
 
 # Company controller
-GET     /companies/:id              controllers.CompanyController.show(id: Long)
+GET     /companies/:id              controllers.CompanyController.show(id: String)
 
 
 
 ###################### JobDating internal backend ######################
 
 # companies
-GET     /backend/companies/:id              controllers.backend.CompanyController.show(id: Long)
+GET     /backend/companies/:id              controllers.backend.CompanyController.show(id: String)
 GET     /backend/addCompany                 controllers.backend.CompanyController.add
-GET     /backend/companies/:id/edit         controllers.backend.CompanyController.edit(id: Long)
+GET     /backend/companies/:id/edit         controllers.backend.CompanyController.edit(id: String)
 
 
 ###################### API ######################
 # Companies
-GET     /api/companies/             controllers.api.v1.CompanyController.index
-GET     /api/companies/:id          controllers.api.v1.CompanyController.show(id: Long)
+GET     /api/v1/companies/             controllers.api.v1.CompanyController.index
+GET     /api/v1/companies/:id          controllers.api.v1.CompanyController.show(id: String)
 
 ############ API backend
 # Companies
-GET     /backend/companies/:id              controllers.api.v1.backend.CompanyController.show(id: Long)
-POST    /backend/createCompany              controllers.api.v1.backend.CompanyController.create
-POST    /backend/companies/:id/update       controllers.api.v1.backend.CompanyController.update(id: Long)
-POST    /backend/companies/:id/delete       controllers.api.v1.backend.CompanyController.delete(id: Long)
+GET     /api/v1/backend/companies/:id              controllers.api.v1.backend.CompanyController.show(id: String)
+POST    /api/v1/backend/createCompany              controllers.api.v1.backend.CompanyController.create
+POST    /api/v1/backend/companies/:id/update       controllers.api.v1.backend.CompanyController.update(id: String)
+POST    /api/v1/backend/companies/:id/delete       controllers.api.v1.backend.CompanyController.delete(id: String)
 
 
 ###################### Assets management ######################

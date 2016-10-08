@@ -20,11 +20,11 @@ class CompanyController @Inject()(configuration: Configuration)
 
   def index = TODO
 
-  def show(id: Long): Action[AnyContent] = TODO
+  def show(id: String): Action[AnyContent] = TODO
 
   def create = TODO
-  def update(id: Long) = TODO
-  def delete(id: Long) = TODO
+  def update(id: String) = TODO
+  def delete(id: String) = TODO
 
 
 }

@@ -22,7 +22,7 @@ class CompanyController @Inject()(configuration: Configuration)
     Future.successful(Ok(views.html.companies.index()))
   }
 
-  def show(id: Long): Action[AnyContent] = Action.async { implicit request =>
+  def show(id: String): Action[AnyContent] = Action.async { implicit request =>
     logger.info("Entered Company view")
     Future.successful(Ok(views.html.companies.company()))
   }
