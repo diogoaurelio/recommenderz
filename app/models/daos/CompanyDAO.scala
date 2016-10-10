@@ -26,7 +26,7 @@ class CompanyDAO @Inject()( protected val dbConfigProvider: DatabaseConfigProvid
 
   def all(): Future[Seq[Company]] = db.run(Companies.result)
 
-  def findById(id: String): Future[Company] = db.run(Companies.filter(_.id === id ).result.head)
+  def findById(id: String): Future[Option[Company]] = db.run(Companies.filter(_.id === id ).result.headOption)
 
   def insert(company: Company): Future[String] = {
     //db.run(Companies += company).map { _ => () } // note this returns Unit/None

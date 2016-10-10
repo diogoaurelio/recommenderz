@@ -12,6 +12,8 @@ import play.api.mvc.{Action, Controller}
 
 import scala.concurrent.ExecutionContext
 
+import controllers.api.v1.responses.{SuccessResponse, ErrorResponse, EndpointResponse}
+
 
 /**
   * Created by diogo on 19.10.16.
@@ -59,10 +61,17 @@ class CompanyController @Inject()(configuration: Configuration, companyDAO: Comp
   }
 
   def show(id: String) = Action.async { implicit rs =>
-    companyDAO.findById(id).map { company =>
-      Ok(Json.toJson(company))
+    companyDAO.findById(id).map { event =>
+      event.fold {
+        NotFound(Json.toJson(
+          ErrorResponse(NOT_FOUND, s"Invalid id: ${id}")
+        ))
+      } { company =>
+        Ok(Json.toJson(
+          SuccessResponse(company))
+        )
+      }
     }
-
   }
 
 
