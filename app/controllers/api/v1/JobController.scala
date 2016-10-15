@@ -1,4 +1,4 @@
-package controllers
+package controllers.api.v1
 
 import models.daos.JobPositionDAO
 import models.JobPosition
@@ -10,8 +10,8 @@ import scala.concurrent.{ExecutionContext, Future, Promise}
 import play.api.Configuration
 
 /**
-  * Created by diogo on 19.07.16.
-  *
+  * Created by diogo on 19.10.16.
+  * TODO: finish this after Company
   */
 
 @Singleton
@@ -20,7 +20,15 @@ class JobController @Inject() (configuration: Configuration, actorSystem: ActorS
 
   //val config = configuration.getString("my.config").getOrElse("none")
 
-  def index = TODO
+  implicit val jobPositionFormat = Json.format[JobPosition]
+
+  def index = Action.async { implicit request =>
+    jobPosDAO.all.map {
+      jobs =>
+        println(jobs)
+        Ok(Json.toJson(jobs))
+    }
+  }
 
 
 }
