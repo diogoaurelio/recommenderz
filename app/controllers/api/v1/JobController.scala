@@ -10,7 +10,7 @@ import scala.concurrent.{ExecutionContext, Future, Promise}
 import play.api.Configuration
 
 /**
-  * Created by diogo on 19.10.16.
+  * Created by diogo on 19. 10.16.
   * TODO: finish this after Company
   */
 

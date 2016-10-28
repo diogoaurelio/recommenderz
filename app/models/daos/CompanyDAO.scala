@@ -19,7 +19,9 @@ import scala.concurrent.Future
   * Doubts about DAOs? Check the most basic example ever: https://github.com/playframework/play-slick/blob/master/samples/basic/app/dao/DogDAO.scala
   * @NamedDatabase("slick")
   */
-class CompanyDAO @Inject()( protected val dbConfigProvider: DatabaseConfigProvider) extends HasDatabaseConfigProvider[JdbcProfile] {
+class CompanyDAO @Inject()( protected val dbConfigProvider: DatabaseConfigProvider)
+  extends HasDatabaseConfigProvider[JdbcProfile] {
+
   import driver.api._
 
   private val Companies = TableQuery[CompaniesTable]
@@ -32,6 +34,17 @@ class CompanyDAO @Inject()( protected val dbConfigProvider: DatabaseConfigProvid
     //db.run(Companies += company).map { _ => () } // note this returns Unit/None
     //http://stackoverflow.com/questions/21894377/returning-autoinc-id-after-insert-in-slick-2-0
     db.run( (Companies returning Companies.map(_.id) ) += company )
+  }
+
+  def update(id: String, company: Company): Future[Int] = {
+    db.run {
+      Companies.filter(_.id === id)
+        .update(company)
+    }
+  }
+
+  def delete(id: String):Future[Int] = {
+    db.run(Companies.filter(_.id === id).delete)
   }
 
   private class CompaniesTable(tag: Tag) extends Table[Company](tag, "company") {

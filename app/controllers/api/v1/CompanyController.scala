@@ -2,7 +2,6 @@ package controllers.api.v1
 
 import javax.inject._
 
-import akka.actor.ActorSystem
 import models.Company
 import models.daos.CompanyDAO
 import play.api.Configuration
@@ -45,7 +44,7 @@ class CompanyController @Inject()(configuration: Configuration, companyDAO: Comp
     Format(companyReads, companyWrites)
   */
 
-  implicit val locationFormat: Format[Company] = (
+  implicit val companyFormat: Format[Company] = (
     (JsPath \ "id").format[String] and
       (JsPath \ "name").format[String] and
       (JsPath \ "description").format[String] and

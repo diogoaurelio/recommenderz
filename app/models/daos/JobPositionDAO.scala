@@ -35,6 +35,12 @@ class JobPositionDAO @Inject()(protected val dbConfigProvider: DatabaseConfigPro
     db.run( (JobPositions returning JobPositions.map(_.id) ) += jobPosition )
   }
 
+  def update(id: Long, job: JobPosition) = {
+    db.run(JobPositions.filter(_.id === id).update(job))
+  }
+
+  def delete(id: Long) = db.run(JobPositions.filter(_.id === id).delete)
+
   private class JobPositionsTable(tag: Tag) extends Table[JobPosition](tag, "jobPosition") {
     /*
     id: Option[Long],
