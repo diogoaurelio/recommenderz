@@ -1,5 +1,6 @@
 package controllers.api.v1.backend
 
+import java.util.concurrent.TimeoutException
 import javax.inject._
 import controllers.api.v1.responses.{SuccessResponse, ErrorResponse}
 import models.Company
@@ -7,8 +8,8 @@ import models.daos.CompanyDAO
 import play.api.Logger
 import play.api.Configuration
 import play.api.libs.functional.syntax._
-import play.api.libs.json.{JsPath, Format, Json}
-import play.api.mvc.{Action, Controller}
+import play.api.libs.json.{JsError, JsPath, Format, Json}
+import play.api.mvc.{AnyContent, BodyParsers, Action, Controller}
 import scala.util.{Try, Success, Failure}
 
 import scala.concurrent.{Future, ExecutionContext}
@@ -45,23 +46,74 @@ class CompanyController @Inject()(configuration: Configuration, companyDAO: Comp
   }
 
   // POST    /api/v1/backend/createCompany              controllers.api.v1.backend.CompanyController.create
-  /*
-  def create = Action.async { implicit rs =>
-    val companyJson = Json.fromJson[Company](rs.request.body)
-    val tryCreate = Try(companyDAO.insert(companyJson))
-      tryCreate.map  match {
-        case Success(company) => Created(Json.toJson(company)).withHeaders("Location" -> s"/movie/${company}")
-        case Failure(exp) => BadRequest(s"Can't create movie: ${exp.getMessage}")
+
+  def create = Action.async(BodyParsers.parse.json) { implicit rs =>
+    val companyJson = rs.body.validate[Company]
+    companyJson.fold(
+      errors => {
+        Future.successful(BadRequest(Json.obj("status" -> "KO", "message" -> JsError.toJson(errors))))
+      },
+      companyData => {
+        val dbInsert = companyDAO.insert(companyData)
+        dbInsert.map { result =>
+          if (result == companyData.id)
+            Ok(Json.obj("status" -> "OK",
+              "message" -> ("Company '" + companyData.name + "' saved.")))
+          else InternalServerError("Failed to save new company")
+
+        }.recover {
+          case ex:Throwable =>
+            logger.error("[Dev Note]: Unable to insert new Company in DB - " + ex.getMessage)
+            InternalServerError(ex.getMessage)
+          case tex:TimeoutException =>
+            logger.error("[Dev Note]: TimeoutException to insert new Company in DB - " + tex.getMessage)
+            InternalServerError(tex.getMessage)
+
+        }
       }
+    )
   }
-  */
 
 
   // POST    /api/v1/backend/companies/:id/update       controllers.api.v1.backend.CompanyController.update(id: String)
-  def update(id: String) = TODO
+  def update(id: String) = Action.async(BodyParsers.parse.json) { implicit rs =>
+    val companyJson = rs.body.validate[Company]
+    companyJson.fold(
+      errors => {
+        Future.successful(BadRequest(Json.obj("status" -> "KO", "message" -> JsError.toJson(errors))))
+      },
+      companyData => {
+        val dbInsert = companyDAO.update(id, companyData)
+        dbInsert.map { result =>
+          if (result == companyData.id)
+            Ok(Json.obj("status" -> "OK",
+              "message" -> ("Company '" + companyData.name + "' saved.")))
+          else InternalServerError("Failed to save new company")
+
+        }.recover {
+          case ex:Throwable =>
+            logger.error("[Dev Note]: Unable to insert new Company in DB - " + ex.getMessage)
+            InternalServerError(ex.getMessage)
+          case tex:TimeoutException =>
+            logger.error("[Dev Note]: TimeoutException to insert new Company in DB - " + tex.getMessage)
+            InternalServerError(tex.getMessage)
+
+        }
+      }
+    )
+  }
 
   // POST    /api/v1/backend/companies/:id/delete       controllers.api.v1.backend.CompanyController.delete(id: String)
-  def delete(id: String) = TODO
+  def delete(id: String) = Action.async(BodyParsers.parse.json) { implicit rs =>
+    companyDAO.delete(id).map { result =>
+      Ok(Json.obj("status" -> "OK",
+        "message" -> ("Successfully deleted Company with ID '" + id)))
+    }.recover {
+      case ex: TimeoutException =>
+        Logger.error("Problem found in project delete process")
+        InternalServerError(ex.getMessage)
+    }
+  }
 
 
 }
