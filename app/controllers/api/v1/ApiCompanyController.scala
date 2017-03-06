@@ -55,7 +55,6 @@ class ApiCompanyController @Inject()(configuration: Configuration, companyDAO: C
   def index = Action.async { implicit request =>
     companyDAO.all.map {
       companies =>
-        println(companies)
         Ok(Json.toJson(companies))
     }
   }

@@ -9,7 +9,10 @@ import scala.concurrent.{Future, ExecutionContext}
 
 
 /**
-  * Created by diogo on 08.10.16.
+  *
+  * Provides companies ability to view & edit their
+  * own company data
+  * Note: Controller associated with views
   */
 
 @Singleton
