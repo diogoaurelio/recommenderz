@@ -19,22 +19,22 @@ GET     /companies/:id              controllers.CompanyController.show(id: Strin
 ###################### JobDating internal backend ######################
 
 # companies
-GET     /backend/companies/:id              controllers.backend.CompanyController.show(id: String)
-GET     /backend/addCompany                 controllers.backend.CompanyController.add
-GET     /backend/companies/:id/edit         controllers.backend.CompanyController.edit(id: String)
+GET     /backend/companies/:id              controllers.backend.BECompanyController.show(id: String)
+GET     /backend/addCompany                 controllers.backend.BECompanyController.add
+GET     /backend/companies/:id/edit         controllers.backend.BECompanyController.edit(id: String)
 
 
 ###################### API ######################
 # Companies
-GET     /api/v1/companies/             controllers.api.v1.CompanyController.index
-GET     /api/v1/companies/:id          controllers.api.v1.CompanyController.show(id: String)
+GET     /api/v1/companies/             controllers.api.v1.ApiCompanyController.index
+GET     /api/v1/companies/:id          controllers.api.v1.ApiCompanyController.show(id: String)
 
 ############ API backend
 # Companies
-GET     /api/v1/backend/companies/:id              controllers.api.v1.backend.CompanyController.show(id: String)
-POST    /api/v1/backend/createCompany              controllers.api.v1.backend.CompanyController.create
-POST    /api/v1/backend/companies/:id/update       controllers.api.v1.backend.CompanyController.update(id: String)
-POST    /api/v1/backend/companies/:id/delete       controllers.api.v1.backend.CompanyController.delete(id: String)
+GET     /api/v1/backend/companies/:id              controllers.api.v1.backend.ApiBECompanyController.show(id: String)
+POST    /api/v1/backend/createCompany              controllers.api.v1.backend.ApiBECompanyController.create
+POST    /api/v1/backend/companies/:id/update       controllers.api.v1.backend.ApiBECompanyController.update(id: String)
+POST    /api/v1/backend/companies/:id/delete       controllers.api.v1.backend.ApiBECompanyController.delete(id: String)
 
 
 ###################### Assets management ######################

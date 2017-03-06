@@ -15,8 +15,8 @@ import play.api.Configuration
   */
 
 @Singleton
-class JobController @Inject() (configuration: Configuration, actorSystem: ActorSystem, jobPosDAO: JobPositionDAO)
-                              (implicit exec: ExecutionContext) extends Controller {
+class ApiJobController @Inject()(configuration: Configuration, actorSystem: ActorSystem, jobPosDAO: JobPositionDAO)
+                                (implicit exec: ExecutionContext) extends Controller {
 
   //val config = configuration.getString("my.config").getOrElse("none")
 

@@ -21,8 +21,8 @@ import controllers.api.v1.responses.{SuccessResponse, ErrorResponse, EndpointRes
   */
 
 @Singleton
-class CompanyController @Inject()(configuration: Configuration, companyDAO: CompanyDAO)
-                                 (implicit exec: ExecutionContext) extends Controller {
+class ApiCompanyController @Inject()(configuration: Configuration, companyDAO: CompanyDAO)
+                                    (implicit exec: ExecutionContext) extends Controller {
 
   //val config = configuration.getString("my.config").getOrElse("none")
 

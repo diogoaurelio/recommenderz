@@ -37,10 +37,12 @@ libraryDependencies ++= Seq(
   //"com.h2database" % "h2" % "1.4.188",
   //"org.postgresql" % "postgresql" % "9.4-1200-jdbc41",
   //"org.postgresql" % "postgresql" % "9.3-1100-jdbc41",
-  "org.postgresql" % "postgresql" % "9.4.1208",
-  "com.typesafe.play" %% "play-slick" % "2.0.0",
-  "com.typesafe.play" %% "play-slick-evolutions" % "2.0.0",
-  "com.sksamuel.elastic4s" %% "elastic4s" % "1.4.14"
+  //"org.postgresql" % "postgresql" % "9.4.1208",
+
+  "mysql" % "mysql-connector-java" % "5.1.34"
+  ,"com.typesafe.play" %% "play-slick" % "2.0.0"
+  ,"com.typesafe.play" %% "play-slick-evolutions" % "2.0.0"
+  ,"com.sksamuel.elastic4s" %% "elastic4s" % "1.4.14"
 )
 
 // Authentication - TODO

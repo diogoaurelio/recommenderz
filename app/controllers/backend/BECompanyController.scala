@@ -13,8 +13,8 @@ import scala.concurrent.{Future, ExecutionContext}
   */
 
 @Singleton
-class CompanyController @Inject()(configuration: Configuration)
-                                 (implicit exec: ExecutionContext) extends Controller {
+class BECompanyController @Inject()(configuration: Configuration)
+                                   (implicit exec: ExecutionContext) extends Controller {
 
   val logger = Logger(this.getClass())
 
